@@ -1,0 +1,11 @@
+{
+  "user_id": "john_doe",
+  "work_dir": "~/submissions",
+  "limit": 10,
+  "git_envs": {
+    "GIT_AUTHOR_NAME": "John Doe",
+    "GIT_AUTHOR_EMAIL": "john-doe@example.com",
+    "GIT_COMMITTER_NAME": "submissions-sync",
+    "GIT_COMMITTER_EMAIL": "submissions-sync@example.com"
+  }
+}

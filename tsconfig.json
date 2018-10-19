@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "./build",
+        "rootDir": "./src",
+        "target": "es2017",
+        "module": "commonjs",
+        "lib": [
+            "es2017"
+        ],
+        "sourceMap": true,
+        "allowJs": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "strict": true,
+        "preserveWatchOutput": true
+    },
+    "include": [
+        "**/*"
+    ]
+}

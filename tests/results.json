@@ -1,0 +1,50 @@
+[
+    {
+        "execution_time": 20,
+        "point": 100.0,
+        "result": "AC",
+        "problem_id": "abc085_a",
+        "user_id": "vain0",
+        "epoch_second": 1515326452,
+        "contest_id": "abc085",
+        "id": 1946375,
+        "language": "C# (Mono 4.6.2.0)",
+        "length": 4189
+    },
+    {
+        "execution_time": 51,
+        "point": 400.0,
+        "result": "AC",
+        "problem_id": "abc079_d",
+        "user_id": "vain0",
+        "epoch_second": 1511009125,
+        "contest_id": "abc079",
+        "id": 1786449,
+        "language": "C# (Mono 4.6.2.0)",
+        "length": 8267
+    },
+    {
+        "execution_time": 49,
+        "point": 400.0,
+        "result": "AC",
+        "problem_id": "abc079_d",
+        "user_id": "vain0",
+        "epoch_second": 1511008101,
+        "contest_id": "abc079",
+        "id": 1785325,
+        "language": "C# (Mono 4.6.2.0)",
+        "length": 5129
+    },
+    {
+        "execution_time": 23,
+        "point": 300.0,
+        "result": "AC",
+        "problem_id": "abc079_c",
+        "user_id": "vain0",
+        "epoch_second": 1511007255,
+        "contest_id": "abc079",
+        "id": 1783920,
+        "language": "C# (Mono 4.6.2.0)",
+        "length": 5216
+    }
+]
