@@ -63,7 +63,7 @@ const submissionPath = (submission: Submission) => {
   const pad = (value: number) => String(value).padStart(2, "0")
   const { year, month, date, hours, minutes } = decomposeEpochSecond(submission.epoch_second)
   const name = [
-    pad(month + 1), pad(date), pad(hours), pad(minutes),
+    pad(month), pad(date), pad(hours), pad(minutes),
     submission.problem_id, submission.result,
   ].join("-")
   const ext = extFromLang(submission.language)
