@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio"
+import { exts } from "./exts"
 import { LocalRepo } from "./infra"
 import {
   Commit,
@@ -7,24 +8,27 @@ import {
   Submission,
   SubmissionWithContent,
 } from "./types"
-import { dateStringFromEpochSecond, decomposeEpochSecond, normalizeEOL } from "./utils"
+import {
+  dateStringFromEpochSecond,
+  decomposeEpochSecond,
+  normalizeEOL,
+} from "./utils"
 
-const extMap = [
-  { key: "GCC", ext: ".cpp" },
-  { key: "Clang", ext: ".cpp" },
-  { key: "Rust", ext: ".rs" },
-  { key: "C#", ext: ".cs" },
-  { key: "F#", ext: ".fs" },
-]
+/** Gets appropriate extension from language. */
+const extFromLang = (() => {
+  /** Remove version numbers from language name. */
+  const removeVer = (s: string) => s.replace(/\(.*\)/, "").trim()
 
-const extFromLang = (lang: string) => {
-  for (const { key, ext } of extMap) {
-    if (lang.includes(key)) {
-      return ext
-    }
+  const map = new Map<string, string>()
+  for (const { lang, ext } of exts) {
+    map.set(removeVer(lang), ext)
   }
-  throw new Error(`Unknown language: ${lang}`)
-}
+
+  // Edge cases.
+  map.set("C++11", ".cpp")
+
+  return (lang: string) => map.get(removeVer(lang)) || undefined
+})()
 
 /**
  * Calculates exising items in the given array.
