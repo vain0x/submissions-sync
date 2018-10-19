@@ -42,6 +42,7 @@ export const cacheOrRetrieve = async (
 export class RealRepo implements Repo {
   constructor(
     private readonly workDir: string,
+    private readonly delayMs: number,
     private readonly envs: any,
   ) {
   }
@@ -57,7 +58,7 @@ export class RealRepo implements Repo {
   async fetch(key: string, url: string) {
     const cacheFilePath = path.join(this.cacheDir, `${key}`)
     const { content } = await cacheOrRetrieve(cacheFilePath, async () => {
-      await delay(1000)
+      await delay(Math.max(100, this.delayMs))
       return await requestActuallySubmitHttpRequest(url)
     })
     return content

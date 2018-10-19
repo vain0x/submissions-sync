@@ -14,7 +14,7 @@ const main = async () => {
 
   const workDir = path.resolve(__dirname, env.work_dir)
 
-  const repo = new RealRepo(workDir, env.git_envs)
+  const repo = new RealRepo(workDir, env.delay_ms, env.git_envs)
   const commits = await incomingCommits(env.user_id, env.limit || 10, repo)
   repo.save(commits)
 }

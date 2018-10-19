@@ -23,9 +23,10 @@ NOTE: Submissions in some programming language may not be supported.
 | Attribute | Default  | Description |
 |:----------|:---------|:------------|
 | user_id   | required | AtCoder user ID |
-| work_dir  | required | Path to local Git work tree directory |
-| git_env   | required | Additional env vars for git commands |
+| work_dir  | required | Path to Git work tree directory |
+| git_env   | required | Additional env vars for git processes |
 | limit     | 10       | Max number of submissions to download |
+| delay_ms  | 1000     | Delay before each HTTP request |
 
 ### Usage: Execute
 

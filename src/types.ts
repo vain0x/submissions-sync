@@ -21,9 +21,19 @@ export type Spec = (toolkit: SpecToolkit) => void
 
 /** Set of environment-specific values. */
 export interface Env {
+  /** AtCoder user ID. */
   user_id: string
+
+  /** Path to Git work tree directory. */
   work_dir: string
+
+  /** Max number of submissions to commit once. */
   limit?: number
+
+  /** Delay before each HTTP request. */
+  delay_ms: number
+
+  /** Additional env vars for git processes. */
   git_envs: unknown
 }
 
