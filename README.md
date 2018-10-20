@@ -2,6 +2,8 @@
 
 This tool is to backup your submissions for AtCoder programming contests with Git repository.
 
+[My submissions repository using this tool is here](https://github.com/vain0x/submissions).
+
 NOTE: Submissions in some programming language may not be supported.
 
 ## Features
