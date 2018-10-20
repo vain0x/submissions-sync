@@ -61,9 +61,10 @@ const submissionDetailsUrl = (submission: Submission) => {
 /// atcoder/yyyy/MM-dd-hh-mm-<problem-id>-<status>.<ext>
 const submissionPath = (submission: Submission) => {
   const pad = (value: number) => String(value).padStart(2, "0")
-  const { year, month, date, hours, minutes } = decomposeEpochSecond(submission.epoch_second)
+  const { year, month, date, hours, minutes, seconds } =
+    decomposeEpochSecond(submission.epoch_second)
   const name = [
-    pad(date), pad(hours), pad(minutes),
+    pad(date), pad(hours), pad(minutes), pad(seconds),
     submission.problem_id, submission.result,
   ].join("-")
   const ext = extFromLang(submission.language)
@@ -169,7 +170,7 @@ export const appSpec: Spec = ({ describe, is, it }) =>
 
     it("atcoderSubmissionPath", () => {
       const actual = submissionPath(submissionABC109D)
-      is(actual, "atcoder/2018-09/08-21-32-abc109_d-ac.rs")
+      is(actual, "atcoder/2018-09/08-21-32-42-abc109_d-ac.rs")
     })
 
     describe("fetchSubmissionCode", () => {
