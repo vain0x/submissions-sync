@@ -55,22 +55,30 @@ export class RealRepo implements Repo {
     return path.join(this.workDir, "~cache")
   }
 
-  async fetch(key: string, url: string) {
+  async fetchCore(url: string) {
+    await delay(Math.max(100, this.delayMs))
+    return await requestActuallySubmitHttpRequest(url)
+  }
+
+  async fetch(key: string, url: string, allowCache: boolean) {
+    if (!allowCache) {
+      return this.fetchCore(url)
+    }
+
     const cacheFilePath = path.join(this.cacheDir, `${key}`)
-    const { content } = await cacheOrRetrieve(cacheFilePath, async () => {
-      await delay(Math.max(100, this.delayMs))
-      return await requestActuallySubmitHttpRequest(url)
-    })
+    const { content } = await cacheOrRetrieve(cacheFilePath, async () => this.fetchCore(url))
     return content
   }
 
   async allSubs(user_id: string) {
-    const result = await this.fetch(`results_${user_id}.json`, apiResults(user_id))
+    const allowCache = false
+    const result = await this.fetch(`results_${user_id}.json`, apiResults(user_id), allowCache)
     return JSON.parse(result) as Submission[]
   }
 
   async fetchSubmissionHtml(submission: Submission, url: string) {
-    return await this.fetch(String(submission.id), url)
+    const allowCache = true
+    return await this.fetch(String(submission.id), url, allowCache)
   }
 
   async exists(filePath: string) {
