@@ -82,7 +82,7 @@ const submissionCodeFromHtml = (html: string) => {
 
 const fetchSubmissionCode = async (submission: Submission, repo: Repo) => {
   const url = submissionDetailsUrl(submission)
-  const html = await repo.fetch(String(submission.id), url)
+  const html = await repo.fetchSubmissionHtml(submission, url)
   const submissionCode = submissionCodeFromHtml(html)
   if (!submissionCode) throw new Error("Couldn't extract submission code from html")
   return normalizeEOL(submissionCode)

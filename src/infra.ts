@@ -69,6 +69,10 @@ export class RealRepo implements Repo {
     return JSON.parse(result) as Submission[]
   }
 
+  async fetchSubmissionHtml(submission: Submission, url: string) {
+    return await this.fetch(String(submission.id), url)
+  }
+
   async exists(filePath: string) {
     return await fileExists(this.resolvePath(filePath))
   }
@@ -144,7 +148,7 @@ export class LocalRepo implements Repo {
     return JSON.parse(buffer.toString()) as Submission[]
   }
 
-  async fetch() {
+  async fetchSubmissionHtml(_submission: Submission, _url: string) {
     return this.dummyHtml
   }
 

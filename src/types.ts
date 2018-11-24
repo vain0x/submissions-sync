@@ -72,7 +72,7 @@ export interface Commit {
 export interface Repo {
   allSubs: (user_id: string) => Promise<Submission[]>
 
-  fetch: (key: string, url: string) => Promise<string>,
+  fetchSubmissionHtml: (submission: Submission, url: string) => Promise<string>,
 
   exists: (path: string) => Promise<boolean>
 
