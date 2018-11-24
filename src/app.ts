@@ -31,7 +31,7 @@ const extFromLang = (() => {
 })()
 
 /**
- * Calculates exising items in the given array.
+ * Calculates existing items in the given array.
  *
  * Assume that the array is sorted by time,
  * and items before particular time exist and others don't,

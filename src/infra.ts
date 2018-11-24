@@ -76,7 +76,7 @@ export class RealRepo implements Repo {
   async save(commits: Commit[]) {
     const log = (str: string) => console.log(str)
 
-    // Verify nonduplicity.
+    // Verify non-duplicity.
     if (unique(commits.map(c => c.filePath)).length !== commits.length) {
       throw new Error(`There exists commit with duplicated file paths. ${JSON.stringify(commits)}`)
     }
