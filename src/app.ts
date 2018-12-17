@@ -72,7 +72,7 @@ const submissionPath = (submission: Submission) => {
 }
 
 const submissionSubject = (submission: Submission) => {
-  return submissionDetailsUrl(submission)
+  return `Add ${submissionDetailsUrl(submission)}`
 }
 
 const submissionCodeFromHtml = (html: string) => {
@@ -185,7 +185,7 @@ export const appSpec: Spec = ({ describe, is, it }) =>
         const repo = new LocalRepo()
         const commits = await incomingCommits("vain0", 1, repo)
         is(commits.length, 1)
-        is(commits[0].subject, "https://atcoder.jp/contests/abc079/submissions/1783920")
+        is(commits[0].subject, "Add https://atcoder.jp/contests/abc079/submissions/1783920")
       })
 
       it("ignores existing submissions", async () => {
@@ -198,7 +198,7 @@ export const appSpec: Spec = ({ describe, is, it }) =>
 
         const secondCommits = await incomingCommits("vain0", 1, repo)
         is(secondCommits.length, 1)
-        is(secondCommits[0].subject, "https://atcoder.jp/contests/abc079/submissions/1785325")
+        is(secondCommits[0].subject, "Add https://atcoder.jp/contests/abc079/submissions/1785325")
       })
     })
   })
