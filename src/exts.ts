@@ -1,4 +1,4 @@
-/** Extracted from <https://beta.atcoder.jp/contests/code-festival-2018-qualb/rule>. */
+/** Extracted from <https://atcoder.jp/contests/code-festival-2018-qualb/rule>. */
 export const exts = [
   {
     lang: "C++14 (GCC 5.4.1)",
