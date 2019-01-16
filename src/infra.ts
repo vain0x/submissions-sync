@@ -10,6 +10,8 @@ import { delay, normalizeEOL, unique } from "./utils"
 const apiResults = (user_id: string) =>
   `https://kenkoooo.com/atcoder/atcoder-api/results?user=${user_id}&rivals=`
 
+const MINIMUM_DELAY_MS = 1000
+
 const fileExists = async (filePath: string) => {
   return await new Promise<boolean>((resolve) => {
     return fs.stat(filePath, err => {
@@ -56,7 +58,7 @@ export class RealRepo implements Repo {
   }
 
   async fetchCore(url: string) {
-    await delay(Math.max(100, this.delayMs))
+    await delay(Math.max(MINIMUM_DELAY_MS, this.delayMs))
     return await requestActuallySubmitHttpRequest(url)
   }
 
