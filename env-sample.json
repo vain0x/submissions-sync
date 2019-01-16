@@ -1,7 +1,7 @@
 {
   "user_id": "john_doe",
   "work_dir": "~/submissions",
-  "limit": 10,
+  "limit": 100,
   "delay_ms": 1000,
   "git_envs": {
     "GIT_AUTHOR_NAME": "John Doe",

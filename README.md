@@ -28,7 +28,7 @@ NOTE: It might not work for submissions in some programming language.
 | `user_id`     | required | AtCoder user ID |
 | `work_dir`    | required | Path to Git work tree directory |
 | `git_envs`    | required | Additional env vars for git processes |
-| `limit`       | 10       | Max number of submissions to download |
+| `limit`       | 100      | Max number of submissions to download |
 | `delay_ms`    | 1000     | Delay before each HTTP request |
 
 ### Usage: Execute
