@@ -1,7 +1,9 @@
 import { deepStrictEqual } from "assert"
 import { describe, it } from "mocha"
 import { appSpec } from "./app"
-import { infraSpec } from "./infra"
+import { infraAtcoderSpec } from "./infra-atcoder"
+import { infraFilesSpec } from "./infra-files"
+import { infraHttpSpec } from "./infra-http"
 import { learnSpec, utilsSpec } from "./utils"
 
 const toolkit = {
@@ -14,4 +16,6 @@ const toolkit = {
 learnSpec(toolkit)
 utilsSpec(toolkit)
 appSpec(toolkit)
-infraSpec(toolkit)
+infraAtcoderSpec(toolkit)
+infraFilesSpec(toolkit)
+infraHttpSpec(toolkit)

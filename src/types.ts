@@ -44,7 +44,7 @@ export interface Problem {
 }
 
 export interface Submission {
-  execution_time: number
+  execution_time: number | null
   point: number
   /** AC, WA, etc. */
   result: string
@@ -61,20 +61,66 @@ export interface SubmissionWithContent extends Submission {
   content: string
 }
 
+export interface SubmissionIdentifier {
+  service: string,
+  year: number,
+  month: number,
+  date: number,
+  hours: number,
+  minutes: number,
+  seconds: number,
+  problemId: string,
+  result: string,
+  ext: string,
+}
+
 export interface Commit {
   /** Relative path from the work tree root. */
-  filePath: string
+  submissionIdentifier: SubmissionIdentifier
   content: string
   subject: string
   authorDate: string
 }
 
-export interface Repo {
-  allSubs: (user_id: string) => Promise<Submission[]>
+export type FindCacheFun = (cacheKey: string) => Promise<string | null>
 
-  fetchSubmissionHtml: (submission: Submission, url: string) => Promise<string>,
+export type StoreCacheFun = (cacheKey: string, content: string) => Promise<void>
 
-  exists: (path: string) => Promise<boolean>
+export type DelayFun = () => Promise<void>
 
-  save: (commits: Commit[]) => Promise<void>
+export type FetchHtmlFun = (url: string) => Promise<string>
+
+export type FetchJsonFun = (url: string) => Promise<string>
+
+export type FetchCodeFun = (submission: Submission) => Promise<string>
+
+export type FetchSubmissionsFun = () => Promise<Submission[]>
+
+export type SubmissionUrlFun = (submission: Submission) => string
+
+export type IsSubmissionCommittedFun = (submission: SubmissionIdentifier) => Promise<boolean>
+
+export type CommitToFilePathFun = (commit: Commit) => string
+
+export type WriteCommitFun = (commit: Commit) => Promise<void>
+
+export type SaveSubmissionsFun = (commits: Commit[]) => Promise<void>
+
+export interface ContestService {
+  serviceName: string,
+  submissionUrl: SubmissionUrlFun,
+  fetchSubmissions: FetchSubmissionsFun,
+  fetchCode: FetchCodeFun,
+}
+
+export interface SubmissionRepository {
+  isSubmissionCommitted: IsSubmissionCommittedFun,
+  saveSubmissions: SaveSubmissionsFun,
+}
+
+export interface AppService {
+  userId: string,
+  limit: number,
+  contestService: ContestService,
+  submissionRepository: SubmissionRepository,
 }

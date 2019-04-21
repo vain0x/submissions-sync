@@ -41,8 +41,8 @@ export const dateStringFromEpochSecond = (epochSecond: number) => {
   ].join("")
 }
 
-export const utilsSpec: Spec = ({ describe, is, it }) =>
-  describe("utilsSpec", () => {
+export const utilsSpec: Spec = ({ describe, is, it }) => {
+  describe("utils", () => {
     it("decomposeEpochSecond", () => {
       const t = decomposeEpochSecond(1536409962)
       is(t, { year: 2018, month: 9, date: 8, hours: 21, minutes: 32, seconds: 42 })
@@ -52,9 +52,10 @@ export const utilsSpec: Spec = ({ describe, is, it }) =>
       is(dateStringFromEpochSecond(1536409962), "2018-09-08T21:32:42+09:00")
     })
   })
+}
 
-export const learnSpec: Spec = ({ describe, is, it }) =>
-  describe("learnSpec", () => {
+export const learnSpec: Spec = ({ describe, is, it }) => {
+  describe("learn", () => {
     describe("Array", () => {
       it("sort", () => {
         const xs = [3, 1, 4, 1].map((x, i) => ({ x, i }))
@@ -77,3 +78,4 @@ export const learnSpec: Spec = ({ describe, is, it }) =>
       })
     })
   })
+}
