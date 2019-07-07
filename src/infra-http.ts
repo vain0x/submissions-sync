@@ -20,7 +20,9 @@ export const delaySafe = (delayMs: number) =>
 
 export const doFetchHtml: FetchHtmlFun = async (url: string) => {
   console.error(`Fetch: ${url}`)
-  return await requestActuallySubmitHttpRequest(url)
+  return await requestActuallySubmitHttpRequest(url, {
+    gzip: true,
+  })
 }
 
 export const doFetchJson =
