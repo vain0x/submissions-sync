@@ -72,7 +72,7 @@ const main = async () => {
       fetchHtml(url, delayFun, findCacheFun, storeCacheFun, doFetchHtml)
 
     const fetchJsonFun: FetchJsonFun = url =>
-      fetchJson(url, delayFun, doFetchJson)
+      fetchJson(url, delayFun, findCacheFun, storeCacheFun, doFetchJson)
 
     const atcoder: ContestService =
       makeAtcoderContestService(userId, fetchHtmlFun, fetchJsonFun)
