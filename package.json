@@ -4,32 +4,39 @@
   "main": "index.js",
   "repository": "git@github.com:vain0x/submissions-sync.git",
   "author": "vain0x <vainzerox@gmail.com>",
-  "license": "MIT",
+  "license": "Apache2.0",
   "private": true,
   "scripts": {
     "start": "ts-node ./src/index.ts",
     "test": "mocha -r ts-node/register ./src/index.spec.ts",
-    "check": "tsc --noEmit --watch",
-    "fix": "tslint --project . --fix",
+    "check": "run-s check:*",
+    "check:tsc": "tsc --noEmit",
+    "check:eslint": "eslint --config .eslintrc src",
+    "fix": "eslint --config .eslintrc --fix src",
     "dev": "run-p dev:*",
     "dev:test": "mocha -r ts-node/register ./src/index.spec.ts --watch --watch-extensions ts"
   },
-  "devDependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.11.3",
-    "@types/uuid": "^3.4.4",
-    "mocha": "^5.2.0",
-    "npm-run-all": "^4.1.3",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "typescript": "^3.1.1"
-  },
   "dependencies": {
-    "@types/cheerio": "^0.22.9",
-    "@types/request-promise-native": "^1.0.15",
-    "cheerio": "^1.0.0-rc.2",
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.5",
-    "simple-git": "^1.104.0"
+    "@types/cheerio": "^0.22.18",
+    "@types/luxon": "^1.24.0",
+    "@types/request-promise-native": "^1.0.17",
+    "@types/uuid": "^8.0.0",
+    "cheerio": "^1.0.0-rc.3",
+    "luxon": "^1.24.1",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.8",
+    "simple-git": "^2.9.0",
+    "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.13",
+    "@typescript-eslint/eslint-plugin": "^3.4.0",
+    "@typescript-eslint/parser": "^3.4.0",
+    "eslint": "^7.3.0",
+    "mocha": "^8.0.1",
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
   }
 }

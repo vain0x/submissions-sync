@@ -1,6 +1,10 @@
 import { EOL } from "os"
 import request from "request-promise-native"
 import { Spec } from "./types"
+import { DateTime } from "luxon"
+
+// See: <https://moment.github.io/luxon/docs/manual/zones.html>
+const JST_ZONE = "UTC+9"
 
 export const delay = (ms: number) => {
   return new Promise<void>(resolve => setTimeout(resolve, ms))
@@ -14,14 +18,14 @@ export const normalizeEOL = (str: string) => {
 }
 
 export const decomposeEpochSecond = (epochSecond: number) => {
-  const d = new Date(epochSecond * 1000)
+  const d = DateTime.fromSeconds(epochSecond, { zone: JST_ZONE })
   return {
-    year: d.getFullYear(),
-    month: d.getMonth() + 1,
-    date: d.getDate(),
-    hours: d.getHours(),
-    minutes: d.getMinutes(),
-    seconds: d.getSeconds(),
+    year: d.year,
+    month: d.month,
+    date: d.day,
+    hours: d.hour,
+    minutes: d.minute,
+    seconds: d.second,
   }
 }
 
@@ -29,16 +33,8 @@ export const decomposeEpochSecond = (epochSecond: number) => {
  * Given JST(+09:00) epoch seconds, return JST, ISO 8601
  */
 export const dateStringFromEpochSecond = (epochSecond: number) => {
-  const pad = (value: number) => String(value).padStart(2, "0")
-  const { year, month, date, hours, minutes, seconds } = decomposeEpochSecond(epochSecond)
-  return [
-    String(year), "-",
-    pad(month), "-",
-    pad(date), "T",
-    pad(hours), ":",
-    pad(minutes), ":",
-    pad(seconds), "+09:00",
-  ].join("")
+  const d = DateTime.fromSeconds(epochSecond, { zone: JST_ZONE })
+  return d.toFormat("yyyy-MM-dd'T'HH:mm:ssZZ")
 }
 
 export const utilsSpec: Spec = ({ describe, is, it }) => {

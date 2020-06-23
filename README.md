@@ -16,8 +16,7 @@ NOTE: It might not work for submissions in some programming language.
 ### Usage: Set up
 
 - Install [`Node.js`](https://nodejs.org) (≥ **10**.12)
-- Install [`yarn`](https://yarnpkg.com) (≥ 1.9)
-- Run `yarn` command to install other packages
+- Run `npm ci` command to install other packages
 - Copy config file `env-sample.json` as `env.json`
     - Set appreciate values in that. See below for details.
 
@@ -33,7 +32,7 @@ NOTE: It might not work for submissions in some programming language.
 
 ### Usage: Execute
 
-Run `yarn start`. This may take some time.
+Run `npm run start`. This may take some time.
 
 ### Usage: Execution details
 
@@ -56,8 +55,8 @@ See the Usage section above to set up.
 
 In `package.json` scripts:
 
-- `yarn test` runs unit tests once
-- `yarn dev` starts to run unit tests continuously
+- `npm run test` runs unit tests once
+- `npm run dev` starts to run unit tests continuously
 
 ### Dev: Directory Structure
 

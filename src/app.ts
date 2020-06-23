@@ -165,7 +165,7 @@ export const appSpec: Spec = ({ describe, is, it }) => {
         fetchCode: async url => `code:${url}`,
         fetchSubmissions: async () => {
           const json = await readSubmissionsJsonForTesting()
-          return JSON.parse(json!)
+          return JSON.parse(json)
         },
       }
 

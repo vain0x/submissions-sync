@@ -1,3 +1,4 @@
+import { Response } from "request"
 import requestActuallySubmitHttpRequest from "request-promise-native"
 import { promisify } from "util"
 import {
@@ -24,14 +25,14 @@ export const delaySafe = (delayMs: number) =>
   delay(Math.max(MINIMUM_DELAY_MS, delayMs))
 
 const ETag = {
-  extendHeaders: (headers: any, etag: string | null) => {
+  extendHeaders: (headers: Record<string, string>, etag: string | null) => {
     if (!etag) {
       return headers
     }
     return { ...headers, "If-None-Match": etag }
   },
 
-  extract: (response: any) =>
+  extract: (response: Response) =>
     response && response.headers && response.headers.etag || null,
 
   cacheKey: (url: string) =>
@@ -67,14 +68,14 @@ const ETag = {
       }
       throw err
     }
-  }
+  },
 }
 
 export const doFetch = async (url: string, options: RequestOptions) => {
   console.error(`Fetch: ${url}`)
   return await requestActuallySubmitHttpRequest(url, {
     gzip: true,
-    ...options
+    ...options,
   })
 }
 
