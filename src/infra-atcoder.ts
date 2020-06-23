@@ -4,7 +4,7 @@ import { ContestService, FetchHtmlFun, FetchJsonFun, Spec, Submission } from "./
 import { normalizeEOL } from "./utils"
 
 const apiResultsUrl = (userId: string) =>
-  `https://kenkoooo.com/atcoder/atcoder-api/results?user=${userId}&rivals=`
+  `https://kenkoooo.com/atcoder/atcoder-api/results?user=${userId}`
 
 export const atcoderSubmissionDetailsUrl = (submission: Submission) =>
   `https://atcoder.jp/contests/${submission.contest_id}/submissions/${submission.id}`
