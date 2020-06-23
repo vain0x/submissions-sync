@@ -1,5 +1,5 @@
 import SimpleGit from "simple-git/promise"
-import uuid from "uuid/v4"
+import {v4 as uuid} from "uuid"
 import {
   Commit,
   CommitToFilePathFun,
@@ -31,7 +31,7 @@ export const saveSubmissions = async (
   const workBranch = "w-" + uuid()
 
   const g = SimpleGit(workDir)
-  g.env(gitEnvs as object)
+  g.env(gitEnvs as Record<string, unknown>)
 
   if (!await g.checkIsRepo()) {
     throw new Error(`Not a git repo ${workDir}`)

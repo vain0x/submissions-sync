@@ -97,8 +97,7 @@ export const writeCommit = (commit: Commit, workDir: string) =>
   writeTextFile(commitToFilePath(commit, workDir), commit.content)
 
 export const readSubmissionsJsonForTesting = async () => {
-  const json = readTextFile(testResultsPath())
-  return json!
+  return await readTextFile(testResultsPath()) as string
 }
 
 export const infraFilesSpec: Spec = ({ describe, is, it }) => {

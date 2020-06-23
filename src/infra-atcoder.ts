@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio"
-import { readSubmissionsJsonForTesting, writeTextFile } from "./infra-files"
+import { readSubmissionsJsonForTesting } from "./infra-files"
 import { ContestService, FetchHtmlFun, FetchJsonFun, Spec, Submission } from "./types"
 import { normalizeEOL } from "./utils"
 
@@ -22,7 +22,7 @@ export const atcoderFetchCode = async (submission: Submission, fetchHtml: FetchH
   return normalizeEOL(submissionCode)
 }
 
-const verifySubmission = (item: any, userId: string): Submission => {
+const verifySubmission = (item: Record<string, string | number>, userId: string): Submission => {
   const {
     execution_time, point, result, problem_id,
     user_id, epoch_second, contest_id, id, language, length,
@@ -99,7 +99,7 @@ export const infraAtcoderSpec: Spec = ({ describe, is, it }) => {
 
     describe("atcoderFetchSubmissions", async () => {
       it("works", async () => {
-        const fetchJson = async () => (await readSubmissionsJsonForTesting())!
+        const fetchJson = async () => await readSubmissionsJsonForTesting()
 
         const submissions = await atcoderFetchSubmissions("vain0", fetchJson)
         is(submissions.length, 4)
